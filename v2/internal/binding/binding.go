@@ -14,6 +14,7 @@ import (
 	"github.com/wailsapp/wails/v2/internal/typescriptify"
 
 	"github.com/leaanthony/slicer"
+
 	"github.com/wailsapp/wails/v2/internal/logger"
 )
 
@@ -184,6 +185,7 @@ func (b *Bindings) GenerateModels() ([]byte, error) {
 	sort.Strings(sortedPackageNames)
 
 	var modelsData bytes.Buffer
+	modelsData.WriteString("/* eslint-disable */\n\n")
 	for _, packageName := range sortedPackageNames {
 		modelData := models[packageName]
 		if strings.TrimSpace(modelData) == "" {
